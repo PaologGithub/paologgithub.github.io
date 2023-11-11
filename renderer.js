@@ -4,7 +4,7 @@ setTimeout(() => {
         const btn = document.getElementById("jsgame-control_center")
         btn.hidden = false;
     } catch (e) {
-        console.info("Not in JSGame: " + e)
+        console.info("Aren't in JSGame: " + e)
         const btn = document.getElementById("jsgame-control_center")
         btn.hidden = true;
     }
