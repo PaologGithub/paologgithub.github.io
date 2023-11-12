@@ -1,6 +1,6 @@
 setTimeout(() => {
     try {
-        require("./titlebar/titlebar.js")
+        require(require("@electron/remote").app.getAppPath() + "./titlebar/titlebar.js")
         const btn = document.getElementById("jsgame-control_center")
         btn.onclick = () => {window.location.href = "https://paologgithub.github.io/JSGameControlCenter/index.html"}
         btn.hidden = false;
