@@ -3,10 +3,7 @@ const path = require("path");
 const remote = require('@electron/remote')
 
 setTimeout(() => {
-    var styleLink = document.createElement('link');
-    styleLink.rel = 'stylesheet';
-    styleLink.type = 'text/css';
-    styleLink.href = /*path.join(rootP.rootPath, 'titlebar/titlebarnormal.css')*/ path.join(remote.app.getAppPath(), "titlebar/titlebarnormal.css")
+    
     
     var titlebar = document.createElement("div");
     titlebar.className = "titlebar"
@@ -80,13 +77,9 @@ setTimeout(() => {
     titlebar.appendChild(titlet)
 
     closebtn.addEventListener('click', () => {
-        if (document.getElementById("pagevalue").value != "popup") {
+
             electron.ipcRenderer.sendSync("closed", "close")
-        } else {
-            window.close();
-        }
     })
-    document.head.appendChild(styleLink)
 
     /*if (localStorage.getItem("theme") == "dark") {
         titlebar.style.backgroundColor = "darkgray"
