@@ -1,0 +1,1 @@
+1: Make a desktop version of navbar with the navbar at left with the 3Dots up, then home, then mods and settings like ShitOS dock (rounded border, not full)

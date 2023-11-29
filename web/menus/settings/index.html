@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSGame Settings</title>
+    <!-- <script type="module" src="./index.js"></script>
+    <script src="../../titlebar/titlebar.js"></script> -->
+    <link rel="stylesheet" href="../../navbar.css">
+    <script src="../../navbar.js"></script>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="../../themes/menuDark.css" id="style">
+    <link rel="stylesheet" href="background.css">
+</head>
+<body>
+    <input type="text" id="pagevalue" value="menu" hidden>
+    <div class="main" id="main"> </div>
+    <div class="wave"></div>
+     <div class="wave"></div>
+     <div class="wave"></div>
+    <div class="menu">
+        <h1>JSGame Settings</h1>
+        <button style="--clr:#0FF0FC;position:absolute;" id="save" class="sa btn"><span>Save</span><i></i></button>
+        <button onclick="window.location.href = '/index.html'" style="--clr:#FF3131;position: absolute;" class="ex btn"><span>Menu</span><i></i></button>
+        <label class="toggle">
+            <input class="toggle-checkbox" type="checkbox" id="darktheme">
+            <div class="toggle-switch"></div>
+            <span class="toggle-label">Dark Theme</span>
+        </label>
+        <div class="i"></div>
+        <label class="toggle">
+            <input class="toggle-checkbox" type="checkbox" id="soundenabled">
+            <div class="toggle-switch"></div>
+            <span class="toggle-label">Sounds</span>
+        </label>
+    </div>
+    <div id="navbar">
+        <button id="mainnavbtn" onclick="window.location.href = '../../index.html'">Main</button>
+        <button id="modsnavbtn" onclick="window.location.href='../mods/index.html'">Mods</button>
+        <button id="settnavbtn" class="navselbtn" onclick="window.location.href='../settings/index.html'">Settings</button>
+        <button id="threedots">︙</button>
+        <!-- <button id="quitnavbtn">Quit The Game</button> -->
+    </div>
+    <div id="threedotsmenu" style="display:none;" hidden>
+        <button id="del">Default JSGame Settings</button>
+        <button id="tsave">Save Settings</button>
+        <button id="tmenu" onclick="window.location.href = '../../index.html'">Go To Menu</button>
+    </div>
+</body>
+</html>

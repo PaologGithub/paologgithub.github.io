@@ -1,0 +1,99 @@
+#navbar {
+    z-index: 7;
+    position:absolute;
+    top:90%;
+    left:0%;
+    right:0%;
+    background-color: aqua;
+    bottom:0%;
+}
+#mainnavbtn {
+    position: absolute;
+    left:0%;
+    right:70%;
+    bottom:0%;
+    top:0%;
+    border:none;
+    width:30%;
+    background-color: aquamarine;
+}
+#mainnavbtn:hover {
+    background-color: aqua !important;
+}
+.navselbtn {
+    background-color: aqua !important;
+}
+#modsnavbtn {
+    position: absolute;
+    left:30%;
+    right:40%;
+    bottom:0%;
+    top:0%;
+    border:none;
+    width:30%;
+    background-color: aquamarine;
+}
+#modsnavbtn:hover {
+    background-color: aqua !important;
+}
+#settnavbtn {
+    position: absolute;
+    left:60%;
+    right:10%;
+    bottom:0%;
+    top:0%;
+    border:none;
+    width:30%;
+    background-color: aquamarine;
+}
+#settnavbtn:hover {
+    background-color: aqua !important;
+}
+#threedots {
+    position: absolute;
+    left:90%;
+    right:0%;
+    bottom:0%;
+    top:0%;
+    border:none;
+    width:10% !important;
+    font-size:large;
+    background-color: aquamarine;
+}
+#threedots:hover {
+    background-color: aqua !important;
+}
+/* #quitnavbtn {
+    position: absolute;
+    left:75%;
+    right:0%;
+    bottom:0%;
+    top:0%;
+    border:none;
+    width:25%;
+    background-color: aquamarine;
+}
+#quitnavbtn:hover {
+    background-color: aqua !important;
+} */
+#threedotsmenu {
+    background-color: lightskyblue;
+    position:absolute;
+    top:0%;
+    bottom:10%;
+    left:70%;
+    right:0%;
+    z-index: 9;
+}
+#threedotsmenu button {
+    position: absolute;
+    left:0%;
+    right:0%;
+    border:none;
+    height:10%;
+    width: 100%;
+    background-color: aquamarine;
+}
+#threedotsmenu button:hover {
+    background-color:aqua;
+}

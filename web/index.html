@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSGame Proof Of Concept 0.0.0 - For Web</title>
+    <script src="./main.js"></script>
+    <link rel="stylesheet" href="./navbar.css">
+    <link rel="stylesheet" href="./themes/menuDark.css" id="style">
+    <link rel="stylesheet" href="./themes/background.css">
+    <script src="./navbar.js" type="module"></script>
+</head>
+<body>
+    <!--<div class="titlebar">
+        <button id="closebtn" class="closebtn"></button>
+    </div>-->
+    <div class="bg"></div>
+    <div class="bg bg2"></div>
+    <div class="bg bg3"></div>
+    <div class="main" id="main"></div>
+    <div class="menu" id="menu">
+        <!-- <h1>Caca</h1> -->
+        <h1>JSGame - For Web</h1>
+        <!-- <button id="settings" style="--clr:#1F51FF;" class="stgbtn"><span></span><i></i></button> -->
+        <button id="playsolo" style="--clr:#39FF14;" class="btn"><span>Play Solo</span><i></i></button>
+        <div class="i"></div>
+        <button id="playmult" style="--clr:#FF3131;" class="btn"><span>Play Multiplayer</span><i></i></button>
+        <!-- <br>
+        <button style="--clr:#FF5E00;" class="btn"><span>Mods</span><i></i></button>
+        <br>
+        <button id="quitbtn" style="--clr:#0FF0FC;"  class="btn"><span>Quit The Game</span><i></i></button>
+        <br> -->
+        <input id="pagevalue" value="menu" hidden>
+        <input id="aero" value="false" hidden>
+    </div>
+    <div id="navbar">
+        <button id="mainnavbtn" class="navselbtn" onclick="window.location.href = 'index.html'">Main</button>
+        <button id="modsnavbtn" onclick="window.location.href='menus/mods/index.html'">Mods</button>
+        <button id="settnavbtn" onclick="window.location.href='menus/settings/index.html'">Settings</button>
+        <button id="threedots">︙</button>
+        <!-- <button id="quitnavbtn">Quit The Game</button> -->
+    </div>
+    <div id="threedotsmenu" style="display:none;" hidden>
+        <button id="tplaysolo">Play Solo</button>
+        <button id="quit" onclick="close();">Quit The Game</button>
+    </div>
+</body>
+</html>
