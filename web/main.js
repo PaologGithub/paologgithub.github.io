@@ -19,11 +19,11 @@ window.addEventListener("DOMContentLoaded", () => {
 setTimeout(() => {
   document.getElementById("playsolo").addEventListener("click", () => {window.location.href = "./games/sologame/index.html"})
   document.getElementById("tplaysolo").addEventListener("click", () => {window.location.href = "./games/sologame/index.html"})
-
+  alert("lol")
   try {
     window.flutter_inappwebview.postMessage('Lol', 'Hello from JavaScript!');
   } catch (e) {
-
+    alert(e)
   }
   /* document.getElementById("quitbtn").addEventListener("click", () => {process.exit("0")}) */
 }, 1)
