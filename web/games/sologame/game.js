@@ -1,5 +1,5 @@
 //import 3d
-const engine = require('three');
+import * as engine from './three/src/Three.js';
 //import Player
 import {Player} from './src/player.js'
 
