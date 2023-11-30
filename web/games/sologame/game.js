@@ -98,5 +98,5 @@ function animate(time) {
 
 //HTML Logic:
 document.getElementById("play").addEventListener("click", () => {isPaused = !isPaused; renderer.domElement.requestPointerLock()})
-document.getElementById("menuquit").addEventListener("click", () => {window.location.href = "../../menus/index/index.html"})
+document.getElementById("menuquit").addEventListener("click", () => {window.location.href = "../../index.html"})
 document.getElementById("osquit").addEventListener("click", () => {require("electron").ipcRenderer.sendSync("closed", "close")})
