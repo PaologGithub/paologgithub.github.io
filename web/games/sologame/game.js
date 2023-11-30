@@ -1,92 +1,102 @@
-import * as engine from './three/src/Three.js'
-//const OBJLoader = require("three/examples/jsm/loaders/OBJLoader")
-/* import {OBJLoader} from "three/examples/jsm/loaders/OBJLoader"; */
+//import 3d
+const engine = require('three');
+//import Player
+import {Player} from './src/player.js'
 
-const camera = new engine.PerspectiveCamera(70,window.innerWidth / window.innerHeight, 0.01, 10);
-camera.position.z = 1;
+//make player
+const player = new Player(0.1)
 
+//Make pause variable
+var isPaused = false;
+
+//make camera
+const camera = new engine.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 10);
+//change camera position
+player.position.z = 3;
+
+//create scene
 const scene = new engine.Scene();
-scene.background = new engine.Color('skyblue')
+//put skyblue background
+scene.background = new engine.Color("skyblue")
 
-const geometry = new engine.BoxGeometry(0.2,0.2,0.2);
-const material = new engine.MeshNormalMaterial();
-
-const mesh = new engine.Mesh(geometry, material);
-scene.add(mesh);
-
-const renderer = new engine.WebGLRenderer({antialias: true});
+//create renderer
+const renderer = new engine.WebGLRenderer();
+//set renderer size
 renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setAnimationLoop(animation);
-renderer.domElement.id = "gameCanvas";
+//set renderer animation
+renderer.setAnimationLoop(animate)
+//set renderer.domElement style and attributes
 renderer.domElement.style.width = "100%";
 renderer.domElement.style.height = "100%";
 renderer.domElement.className = "main";
 renderer.domElement.id = "main"
-renderer.domElement.style.cursor = "crosshair"
+//game logic: 
 
-
+//camera:
+//ask for pointer lock
 renderer.domElement.addEventListener("click", () => {
-    renderer.domElement.requestPointerLock()
-    /* renderer.domElement.addEventListener('mousemove', (cur) => {
-        //remote.getCurrentWebContents().sendInputEvent({type: '', x: window.innerWidth /2, y: window.innerHeight /2})
-        console.log(cur);
-        if (cur.x < window.innerWidth / 2) {
-            //console.log("left");
-            camera.rotation.y -= 0.01
-        } 
-        if (cur.x > window.innerWidth / 2) {
-            //console.log("right");
-            camera.rotation.y += 0.01
-        } 
-        if (cur.y > window.innerHeight / 2) {
-            //console.log("bottom")
-            camera.rotation.x -= 0.01
-        } 
-        if (cur.y < window.innerHeight / 2) {
-            //console.log("top")
-            camera.rotation.x +=0.01
-        }
-    }) */
+    renderer.domElement.requestPointerLock();
+})
+//Rotate the camera when mouse moving
+renderer.domElement.addEventListener("mousemove", player.handleMouseMove)
+
+//Make something when pointer lock
+document.addEventListener("pointerlockchange", () => {
+    if (document.pointerLockElement === renderer.domElement) {
+        isPaused = false;
+    } else {
+        isPaused = true;
+    }
 })
 
+setInterval(() => {
+
+    if (isPaused) {
+        player.needToHandleMouseMove = false;
+        player.needToHandleKeyboard = false;
+        document.getElementById("pauseMenu").style.display = "";
+    } else {
+        player.needToHandleMouseMove = true;
+        player.needToHandleKeyboard = true;
+        document.getElementById("pauseMenu").style.display = "none";
+    }
+}, 20)
+//Make paused in start
+isPaused = true;
+
+// END OF CAMERA
+//Movement:
+document.addEventListener("keydown", player.handleKeyDown)
+document.addEventListener("keyup", player.handleKeyUp)
+//END OF MOVEMENT
+//disable scrolling
+document.addEventListener('wheel', (event) => {event.preventDefault();}, {passive: false});
+
+//append the game
 document.body.appendChild(renderer.domElement);
 
+const geometry = new engine.BoxGeometry(1,1,1);
+const material = new engine.MeshBasicMaterial({ color: 0xff0000 });
+const cube = new engine.Mesh(geometry, material);
+scene.add(cube);
+
+function animate(time) {
+
+    player.checkForMovement();
 
 
-//const player = FPS.THREE_ADDONS.FirstPersonControls(camera, renderer.domElement)
+    camera.rotation.x = player.rotation.x;
+    camera.rotation.y = player.rotation.y;
+    camera.rotation.z = player.rotation.z;
 
-function animation(time) {
-    mesh.rotation.x = time / 2000;
-    mesh.rotation.y = time / 1000;
-    
+    camera.position.x = player.position.x;
+    camera.position.y = player.position.y;
+    camera.position.z = player.position.z;
+
     renderer.render(scene, camera);
-}
+};
 
-
-
-setInterval(() => {
-    
-    /* window.addEventListener('mousemove', (cur) => {
-        //remote.getCurrentWebContents().sendInputEvent({type: '', x: window.innerWidth /2, y: window.innerHeight /2})
-        //console.log(cur)
-        if (cur.x < window.innerWidth / 2) {
-            console.log("left");
-            camera.rotation.y -= 0.01
-        } 
-        if (cur.x > window.innerWidth / 2) {
-            console.log("right");
-            camera.rotation.y += 0.01
-        } 
-        if (cur.y > window.innerHeight / 2) {
-            console.log("bottom")
-            camera.rotation.x += 0.01
-        } 
-        if (cur.y < window.innerHeight / 2) {
-            console.log("top")
-            camera.rotation.x -=0.01
-        }
-    }) */
-    renderer.domElement.style.width = "100%";
-    renderer.domElement.style.height = "100%";
-    
-}, 20)
+//HTML Logic:
+document.getElementById("play").addEventListener("click", () => {isPaused = !isPaused; renderer.domElement.requestPointerLock()})
+document.getElementById("menuquit").addEventListener("click", () => {window.location.href = "../../menus/index/index.html"})
+document.getElementById("osquit").addEventListener("click", () => {require("electron").ipcRenderer.sendSync("closed", "close")})

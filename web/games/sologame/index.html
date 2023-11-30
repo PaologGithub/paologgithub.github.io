@@ -3,11 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../themes/menuDark.css">
+    <title>JSGame</title>
     <link rel="stylesheet" href="index.css">
-    <title>SoloGame</title>
+    <script src="gameBasics.js"></script>
+    <script src="../../titlebar/titlebar.js"></script>
 </head>
 <body>
     <script type="module" src="game.js"></script>
-    <!-- <h6>caca</h6> -->
+    <input id="pagevalue" value="sologame" hidden>
+    <input id="aero" value="false" hidden>
+    <div class="main">
+        <div id="pauseMenu">
+            <h1>Pause Menu</h1>
+            <button style="--clr:#1F51FF;" id="play" class="btn"><span>Play</span><i></i></button>
+            <br>
+            <button style="--clr:yellow;" id="menuquit" class="btn"><span>Quit to Menu</span><i></i></button>
+            <br>
+            <button style="--clr:red;" id="osquit" class="btn"><span>Quit the Game</span><i></i></button>
+        </div>
+    </div>
 </body>
 </html>

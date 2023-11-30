@@ -12383,7 +12383,6 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	class PerspectiveCamera extends Camera {
 
-		
 		constructor( fov = 50, aspect = 1, near = 0.1, far = 2000 ) {
 
 			super();

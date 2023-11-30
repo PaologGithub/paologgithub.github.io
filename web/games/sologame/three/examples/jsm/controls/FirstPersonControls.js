@@ -1,8 +1,11 @@
-import {
+/* import {
 	MathUtils,
 	Spherical,
 	Vector3
-} from 'three';
+} from 'three'; */
+const MathUtils = require("three").MathUtils;
+const Spherical = require("three").Spherical;
+const Vector3 = require("three").Vector3;
 
 const _lookDirection = new Vector3();
 const _spherical = new Spherical();

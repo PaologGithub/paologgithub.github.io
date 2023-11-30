@@ -1,7 +1,32 @@
-#main {
-    position:absolute;
+body {
+    margin: 0;
+    cursor: crosshair;
+}
+body::-webkit-scrollbar {
+    display:none;
+}
+#fakeCursor {
+    width: 0px;
+    height: 0px;
+    position: absolute;
+}
+#pauseMenu {
+    position: absolute;
     top:0%;
-    bottom:0%;
+    bottom: 0%;
     left:0%;
-    right:0%
+    right:0%;
+    background-color: rgba(128,128,128,0.5);
+    z-index: 3;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#pauseMenu * {
+    z-index: 3;
+    cursor:crosshair
+}
+#pauseMenu h1 {
+    font-family: monospace;
 }
