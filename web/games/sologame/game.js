@@ -99,4 +99,7 @@ function animate(time) {
 //HTML Logic:
 document.getElementById("play").addEventListener("click", () => {isPaused = !isPaused; renderer.domElement.requestPointerLock()})
 document.getElementById("menuquit").addEventListener("click", () => {window.location.href = "../../index.html"})
-document.getElementById("osquit").addEventListener("click", () => {require("electron").ipcRenderer.sendSync("closed", "close")})
+document.getElementById("osquit").addEventListener("click", () => {
+    alert("Before, you need to enable dom.allow_scripts_to_close_windows to true in about:config.")
+    window.close();
+})
