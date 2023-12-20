@@ -1,5 +1,10 @@
 //import 3d
-import * as engine from './three/src/Three.js';
+import * as engine from './three/src/Three.js'
+//import GLTF Loader
+import {GLTFLoader} from './three/examples/jsm/loaders/GLTFLoader.js'
+import {OBJLoader} from './three/examples/jsm/loaders/OBJLoader.js'
+import {MTLLoader} from './three/examples/jsm/loaders/MTLLoader.js'
+
 //import Player
 import {Player} from './src/player.js'
 
@@ -30,6 +35,12 @@ renderer.domElement.style.width = "100%";
 renderer.domElement.style.height = "100%";
 renderer.domElement.className = "main";
 renderer.domElement.id = "main"
+
+//light:
+const ambientLight = new engine.AmbientLight(0xFFFFFF);
+ambientLight.intensity = 4;
+scene.add( ambientLight );
+
 //game logic: 
 
 //camera:
@@ -75,10 +86,19 @@ document.addEventListener('wheel', (event) => {event.preventDefault();}, {passiv
 //append the game
 document.body.appendChild(renderer.domElement);
 
-const geometry = new engine.BoxGeometry(1,1,1);
-const material = new engine.MeshBasicMaterial({ color: 0xff0000 });
-const cube = new engine.Mesh(geometry, material);
-scene.add(cube);
+//name all laoders
+const glftLoader = new GLTFLoader();
+const objLoader = new OBJLoader();
+const mtlLoader = new MTLLoader();
+//load my testmap
+glftLoader.load("./res/TestMap.gltf", (glftScene) => {
+    var obj = glftScene.scene.children[0];
+    obj.position.x = 0;
+    obj.position.y = 0;
+    obj.position.z = 0;
+    scene.add(obj)
+})
+
 
 function animate(time) {
 
@@ -98,8 +118,5 @@ function animate(time) {
 
 //HTML Logic:
 document.getElementById("play").addEventListener("click", () => {isPaused = !isPaused; renderer.domElement.requestPointerLock()})
-document.getElementById("menuquit").addEventListener("click", () => {window.location.href = "../../index.html"})
-document.getElementById("osquit").addEventListener("click", () => {
-    alert("Before, you need to enable dom.allow_scripts_to_close_windows to true in about:config.")
-    window.close();
-})
+document.getElementById("menuquit").addEventListener("click", () => {window.location.href = "../../menus/index/index.html"})
+document.getElementById("osquit").addEventListener("click", () => {require("electron").ipcRenderer.sendSync("closed", "close")})

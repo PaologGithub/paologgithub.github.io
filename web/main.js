@@ -19,9 +19,5 @@ window.addEventListener("DOMContentLoaded", () => {
 setTimeout(() => {
   document.getElementById("playsolo").addEventListener("click", () => {window.location.href = "./games/sologame/index.html"})
   document.getElementById("tplaysolo").addEventListener("click", () => {window.location.href = "./games/sologame/index.html"})
-  if (localStorage.getItem("platform") != null) {
-    document.getElementsByTagName("h1")[0].textContent = `JSGame - For ${localStorage.getItem("platform")}`
-    
-  }
   /* document.getElementById("quitbtn").addEventListener("click", () => {process.exit("0")}) */
 }, 1)

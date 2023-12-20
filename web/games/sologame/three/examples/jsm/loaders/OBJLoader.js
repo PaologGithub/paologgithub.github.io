@@ -1,51 +1,19 @@
-/* import {
-	three.BufferGeometry,
-	three.Filethree.Loader,
-	three.Float32BufferAttribute,
-	three.Group,
-	three.LineBasicMaterial,
-	three.LineSegments,
-	three.Loader,
+import {
+	BufferGeometry,
+	FileLoader,
+	Float32BufferAttribute,
+	Group,
+	LineBasicMaterial,
+	LineSegments,
+	Loader,
 	Material,
-	three.Mesh,
-	three.MeshPhongMaterial,
-	three.Points,
-	three.PointsMaterial,
-	three.Vector3,
+	Mesh,
+	MeshPhongMaterial,
+	Points,
+	PointsMaterial,
+	Vector3,
 	Color
-} from 'three'; */
-/* const {
-	three.BufferGeometry,
-	three.Filethree.Loader,
-	three.Float32BufferAttribute,
-	three.Group,
-	three.LineBasicMaterial,
-	three.LineSegments,
-	three.Loader,
-	Material,
-	three.Mesh,
-	three.MeshPhongMaterial,
-	three.Points,
-	three.PointsMaterial,
-	three.Vector3,
-	Color
-} = await require("./three").default */
-/* const three.BufferGeometry = require("three").three.BufferGeometry
-const three.Filethree.Loader = require("three").three.Filethree.Loader
-const three.Float32BufferAttribute = require("three").three.Float32BufferAttribute
-const three.Group = require("three").three.Group
-const three.LineBasicMaterial = require("three").three.LineBasicMaterial
-const three.LineSegments = require("three").three.LineSegments
-const three.Loader = require("three").three.Loader
-const Material = require("three").Material
-const three.Mesh = require("three").three.Mesh
-const three.MeshPhongMaterial = require("three").three.MeshPhongMaterial
-const three.Points = require("three").three.Points
-const three.PointsMaterial = require("three").three.PointsMaterial
-const three.Vector3 = require("three").three.Vector3
-const Color = require("three").Color */
-
-const three = require("three")
+} from '../../../src/Three.js';
 
 // o object_name | g group_name
 const _object_pattern = /^[og]\s*(.+)?/;
@@ -57,14 +25,14 @@ const _material_use_pattern = /^usemtl /;
 const _map_use_pattern = /^usemap /;
 const _face_vertex_data_separator_pattern = /\s+/;
 
-const _vA = new three.Vector3();
-const _vB = new three.Vector3();
-const _vC = new three.Vector3();
+const _vA = new Vector3();
+const _vB = new Vector3();
+const _vC = new Vector3();
 
-const _ab = new three.Vector3();
-const _cb = new three.Vector3();
+const _ab = new Vector3();
+const _cb = new Vector3();
 
-const _color = new three.Color();
+const _color = new Color();
 
 function ParserState() {
 
@@ -419,7 +387,7 @@ function ParserState() {
 
 		addPointGeometry: function ( vertices ) {
 
-			this.object.geometry.type = 'three.Points';
+			this.object.geometry.type = 'Points';
 
 			const vLen = this.vertices.length;
 
@@ -465,7 +433,7 @@ function ParserState() {
 
 //
 
-class OBJLoader extends three.Loader {
+class OBJLoader extends Loader {
 
 	constructor( manager ) {
 
@@ -479,7 +447,7 @@ class OBJLoader extends three.Loader {
 
 		const scope = this;
 
-		const loader = new three.FileLoader( this.manager );
+		const loader = new FileLoader( this.manager );
 		loader.setPath( this.path );
 		loader.setRequestHeader( this.requestHeader );
 		loader.setWithCredentials( this.withCredentials );
@@ -713,7 +681,7 @@ class OBJLoader extends three.Loader {
 				/*
 					 * http://paulbourke.net/dataformats/obj/
 					 *
-					 * From chapter "three.Grouping" Syntax explanation "s group_number":
+					 * From chapter "Grouping" Syntax explanation "s group_number":
 					 * "group_number is the smoothing group number. To turn off smoothing groups, use a value of 0 or off.
 					 * Polygonal elements use group numbers to put elements in different smoothing groups. For free-form
 					 * surfaces, smoothing groups are either turned on or off; there is no difference between values greater
@@ -747,7 +715,7 @@ class OBJLoader extends three.Loader {
 
 		state.finalize();
 
-		const container = new three.Group();
+		const container = new Group();
 		container.materialLibraries = [].concat( state.materialLibraries );
 
 		const hasPrimitives = ! ( state.objects.length === 1 && state.objects[ 0 ].geometry.vertices.length === 0 );
@@ -766,26 +734,26 @@ class OBJLoader extends three.Loader {
 				// Skip o/g line declarations that did not follow with any faces
 				if ( geometry.vertices.length === 0 ) continue;
 
-				const buffergeometry = new three.BufferGeometry();
+				const buffergeometry = new BufferGeometry();
 
-				buffergeometry.setAttribute( 'position', new three.Float32BufferAttribute( geometry.vertices, 3 ) );
+				buffergeometry.setAttribute( 'position', new Float32BufferAttribute( geometry.vertices, 3 ) );
 
 				if ( geometry.normals.length > 0 ) {
 
-					buffergeometry.setAttribute( 'normal', new three.Float32BufferAttribute( geometry.normals, 3 ) );
+					buffergeometry.setAttribute( 'normal', new Float32BufferAttribute( geometry.normals, 3 ) );
 
 				}
 
 				if ( geometry.colors.length > 0 ) {
 
 					hasVertexColors = true;
-					buffergeometry.setAttribute( 'color', new three.Float32BufferAttribute( geometry.colors, 3 ) );
+					buffergeometry.setAttribute( 'color', new Float32BufferAttribute( geometry.colors, 3 ) );
 
 				}
 
 				if ( geometry.hasUVIndices === true ) {
 
-					buffergeometry.setAttribute( 'uv', new three.Float32BufferAttribute( geometry.uvs, 2 ) );
+					buffergeometry.setAttribute( 'uv', new Float32BufferAttribute( geometry.uvs, 2 ) );
 
 				}
 
@@ -804,20 +772,20 @@ class OBJLoader extends three.Loader {
 						material = this.materials.create( sourceMaterial.name );
 
 						// mtl etc. loaders probably can't create line materials correctly, copy properties to a line material.
-						if ( isLine && material && ! ( material instanceof three.LineBasicMaterial ) ) {
+						if ( isLine && material && ! ( material instanceof LineBasicMaterial ) ) {
 
-							const materialLine = new three.LineBasicMaterial();
-							three.Material.prototype.copy.call( materialLine, material );
+							const materialLine = new LineBasicMaterial();
+							Material.prototype.copy.call( materialLine, material );
 							materialLine.color.copy( material.color );
 							material = materialLine;
 
-						} else if ( isPoints && material && ! ( material instanceof three.PointsMaterial ) ) {
+						} else if ( isPoints && material && ! ( material instanceof PointsMaterial ) ) {
 
-							const materialPoints = new three.PointsMaterial( { size: 10, sizeAttenuation: false } );
-							three.Material.prototype.copy.call( materialthree.Points, material );
-							materialthree.Points.color.copy( material.color );
-							materialthree.Points.map = material.map;
-							material = materialthree.Points;
+							const materialPoints = new PointsMaterial( { size: 10, sizeAttenuation: false } );
+							Material.prototype.copy.call( materialPoints, material );
+							materialPoints.color.copy( material.color );
+							materialPoints.map = material.map;
+							material = materialPoints;
 
 						}
 
@@ -827,15 +795,15 @@ class OBJLoader extends three.Loader {
 
 						if ( isLine ) {
 
-							material = new three.LineBasicMaterial();
+							material = new LineBasicMaterial();
 
 						} else if ( isPoints ) {
 
-							material = new three.PointsMaterial( { size: 1, sizeAttenuation: false } );
+							material = new PointsMaterial( { size: 1, sizeAttenuation: false } );
 
 						} else {
 
-							material = new three.MeshPhongMaterial();
+							material = new MeshPhongMaterial();
 
 						}
 
@@ -860,21 +828,21 @@ class OBJLoader extends three.Loader {
 					for ( let mi = 0, miLen = materials.length; mi < miLen; mi ++ ) {
 
 						const sourceMaterial = materials[ mi ];
-						buffergeometry.addthree.Group( sourceMaterial.groupStart, sourceMaterial.groupCount, mi );
+						buffergeometry.addGroup( sourceMaterial.groupStart, sourceMaterial.groupCount, mi );
 
 					}
 
 					if ( isLine ) {
 
-						mesh = new three.LineSegments( buffergeometry, createdMaterials );
+						mesh = new LineSegments( buffergeometry, createdMaterials );
 
 					} else if ( isPoints ) {
 
-						mesh = new three.Points( buffergeometry, createdMaterials );
+						mesh = new Points( buffergeometry, createdMaterials );
 
 					} else {
 
-						mesh = new three.Mesh( buffergeometry, createdMaterials );
+						mesh = new Mesh( buffergeometry, createdMaterials );
 
 					}
 
@@ -882,15 +850,15 @@ class OBJLoader extends three.Loader {
 
 					if ( isLine ) {
 
-						mesh = new three.LineSegments( buffergeometry, createdMaterials[ 0 ] );
+						mesh = new LineSegments( buffergeometry, createdMaterials[ 0 ] );
 
 					} else if ( isPoints ) {
 
-						mesh = new three.Points( buffergeometry, createdMaterials[ 0 ] );
+						mesh = new Points( buffergeometry, createdMaterials[ 0 ] );
 
 					} else {
 
-						mesh = new three.Mesh( buffergeometry, createdMaterials[ 0 ] );
+						mesh = new Mesh( buffergeometry, createdMaterials[ 0 ] );
 
 					}
 
@@ -908,20 +876,20 @@ class OBJLoader extends three.Loader {
 
 			if ( state.vertices.length > 0 ) {
 
-				const material = new three.PointsMaterial( { size: 1, sizeAttenuation: false } );
+				const material = new PointsMaterial( { size: 1, sizeAttenuation: false } );
 
-				const buffergeometry = new three.BufferGeometry();
+				const buffergeometry = new BufferGeometry();
 
-				buffergeometry.setAttribute( 'position', new three.Float32BufferAttribute( state.vertices, 3 ) );
+				buffergeometry.setAttribute( 'position', new Float32BufferAttribute( state.vertices, 3 ) );
 
 				if ( state.colors.length > 0 && state.colors[ 0 ] !== undefined ) {
 
-					buffergeometry.setAttribute( 'color', new three.Float32BufferAttribute( state.colors, 3 ) );
+					buffergeometry.setAttribute( 'color', new Float32BufferAttribute( state.colors, 3 ) );
 					material.vertexColors = true;
 
 				}
 
-				const points = new three.Points( buffergeometry, material );
+				const points = new Points( buffergeometry, material );
 				container.add( points );
 
 			}
