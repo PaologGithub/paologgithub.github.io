@@ -1,0 +1,30 @@
+{
+    "JSGame": {
+        "urlWin": "https://github.com/PaologGithub/JSGameGithubReleases/releases/latest/download/fileswin.zip",
+        "urlLinux": "https://github.com/PaologGithub/JSGameGithubReleases/releases/latest/download/fileslinux.zip",
+        "urlMac": "",
+        "iconWin": "https://github.com/PaologGithub/JSGameGithubReleases/releases/latest/download/JSGame.ico",
+        "iconLinux": "https://github.com/PaologGithub/JSGameGithubReleases/releases/latest/download/JSGame.png",
+        "iconMac": "",
+        "cmdLineWin": "/jsgame.exe",
+        "cmdLineLinux": "/jsgame",
+        "chmodLinux": true,
+        "terminalLinux": false,
+        "needToUnzipWindows": true,
+        "needToUnzipLinux": true,
+        "needToUnzipMac": "",
+        "appTitle": "JSGame",
+        "appDescription": "A super Game developed in JavaScript (NOT JAVA BCS JAVASCRIPT > JAVA)",
+        "appArgsWindows": "",
+        "appArgsLinux": "",
+        "appArgsMac": "",
+        "outputLinkWindows": "%AppData%\\Microsoft\\Windows\\Start Menu\\Programs",
+        "outputLinkLinux": "~/.local/share/applications",
+        "outputLinkMac": "",
+        "windowModeWindows": "normal",
+        "hotkeyWindows": "",
+        "isWindowsSupported": true,
+        "isLinuxSupported": true,
+        "isMacSupported": false
+    }
+}
