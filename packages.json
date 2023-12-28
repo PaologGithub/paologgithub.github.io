@@ -26,7 +26,7 @@
 		'needToCreateLinkWindows': true,
 		'needToCreateLinkLinux': true,
 		'needToCreateLinkMac': true,
-        'outputLinkWindows': '%AppData%\\Microsoft\\Windows\\Start Menu\\Programs',
+        'outputLinkWindows': '%AppData%/Microsoft/Windows/Start Menu/Programs',
         'outputLinkLinux': '~/.local/share/applications',
         'outputLinkMac': '',
         'windowModeWindows': 'normal',
