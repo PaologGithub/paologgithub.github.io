@@ -1,0 +1,24 @@
+body {
+    align-items: center;
+    flex-direction: column;
+    display:flex;
+    font-family: monospace;
+}
+#ver {
+    flex-direction: row;
+    display:flex;
+    list-style: none;
+    word-spacing: 5px;
+}
+ul button:not(:last-child) {
+    margin-right: 125px;
+}
+ul button:first-child {
+    margin-left:-55px
+}
+ul button {
+    width:200px;
+    height: 200px;
+    border-radius:25px;
+    border:none;
+}

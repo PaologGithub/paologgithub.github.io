@@ -9,11 +9,14 @@ class Player {
         this.needToHandleMouseMove = false;
         this.needToHandleKeyboard = false;
 
-        // Bind event handlers to the instance
+        this.rotation.order = "YXZ"
+        
         this.handleKeyDown = this.handleKeyDown.bind(this);
         this.handleKeyUp = this.handleKeyUp.bind(this);
         this.handleMouseMove = this.handleMouseMove.bind(this);
     }
+    
+    
 
     // Handle Key Down. PUT IN document.addEventListener("keydown")
     handleKeyDown(event) {
@@ -40,36 +43,26 @@ class Player {
         }
     }
 
-    // Handle Mouse move. PUT IN document.addEventListener("mousemove")
     handleMouseMove(event) {
         if (this.needToHandleMouseMove) {
             let movementX = event.movementX || event.mozMovementX || event.webkitMovementX || 0;
             let movementY = event.movementY || event.mozMovementY || event.webkitMovementY || 0;
-
-            // Créez un quaternion pour la rotation autour de l'axe Y
+    
+            // Create a Y quaternion
             let quaternionY = new THREE.Quaternion();
             quaternionY.setFromAxisAngle(new THREE.Vector3(0, 1, 0), -movementX * 0.002);
-          
-            // Appliquez la rotation autour de l'axe Y
+    
+            // Apply Y rotation
             this.rotation.multiply(quaternionY);
-            console.log(this.rotation.y)
-          
-            // Créez un quaternion pour la rotation autour de l'axe X
-            /* let quaternionX = new THREE.Quaternion();
+    
+            // Create a quaternion for rotation around the X axis
+            let quaternionX = new THREE.Quaternion();
             quaternionX.setFromAxisAngle(new THREE.Vector3(1, 0, 0), -movementY * 0.002);
-          
-            // Calculez la nouvelle rotation autour de l'axe X
-            let newRotation = this.rotation.clone().multiply(quaternionX);
-          
-            // Obtenez l'angle de rotation autour de l'axe X
-            let angle = new THREE.Euler().setFromQuaternion(newRotation, 'YXZ').x;
-          
-            // Limitez la rotation autour de l'axe X à un demi-tour
-            if (angle > -Math.PI / 2 && angle < Math.PI / 2) {
-              this.rotation.copy(newRotation);
-            } */
+    
+            this.rotation.multiply(quaternionX);
         }
     }
+    
 
 
 
@@ -77,27 +70,34 @@ class Player {
 
     // Move the player with keys. PUT THAT IN ANIMATION LOOP
     checkForMovement() {
-        let moveSpeedX = this.moveSpeed * Math.sin(this.rotation.y);
-        let moveSpeedZ = this.moveSpeed * Math.cos(this.rotation.y);
-
+        let direction = new THREE.Vector3();
+        let rotationMatrix = new THREE.Matrix4();
+        rotationMatrix.makeRotationFromQuaternion(this.rotation);
+    
         if (this.keys.W) {
-            this.position.x -= moveSpeedX;
-            this.position.z -= moveSpeedZ;
+            direction.z -= 1;
         }
         if (this.keys.S) {
-            this.position.x += moveSpeedX;
-            this.position.z += moveSpeedZ;
+            direction.z += 1;
         }
         if (this.keys.D) {
-            this.position.x += moveSpeedZ;
-            this.position.z -= moveSpeedX;
+            direction.x += 1;
         }
         if (this.keys.A) {
-            this.position.x -= moveSpeedZ;
-            this.position.z += moveSpeedX;
+            direction.x -= 1;
         }
-        if (this.keys[' ']) this.position.y += this.moveSpeed;
-        if (this.keys.SHIFT) this.position.y -= this.moveSpeed;
+        if (this.keys[' ']) {
+            direction.y += 1;
+        }
+        if (this.keys.SHIFT) {
+            direction.y -= 1;
+        }
+    
+        direction.normalize(); // this ensures consistent movements in all directions
+        direction.applyMatrix4(rotationMatrix);
+        direction.multiplyScalar(this.moveSpeed);
+    
+        this.position.add(direction);
     }
 }
 export { Player };

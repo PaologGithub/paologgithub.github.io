@@ -49,7 +49,7 @@ renderer.domElement.addEventListener("click", () => {
     renderer.domElement.requestPointerLock();
 })
 //Rotate the camera when mouse moving
-renderer.domElement.addEventListener("mousemove", player.handleMouseMove)
+renderer.domElement.addEventListener("mousemove", player.handleMouseMove, false)
 
 //Make something when pointer lock
 document.addEventListener("pointerlockchange", () => {
@@ -105,18 +105,19 @@ function animate(time) {
     player.checkForMovement();
 
 
-    camera.rotation.x = player.rotation.x;
-    camera.rotation.y = player.rotation.y;
-    camera.rotation.z = player.rotation.z;
+    /* camera.setRotationFromQuaternion(player.rotation) */
+    //camera.rotation.copy(player.rotation)
+    camera.quaternion.copy(player.rotation)
+    camera.position.copy(player.position)
 
-    camera.position.x = player.position.x;
+    /* camera.position.x = player.position.x;
     camera.position.y = player.position.y;
     camera.position.z = player.position.z;
-
+ */
     renderer.render(scene, camera);
 };
 
 //HTML Logic:
 document.getElementById("play").addEventListener("click", () => {isPaused = !isPaused; renderer.domElement.requestPointerLock()})
-document.getElementById("menuquit").addEventListener("click", () => {window.location.href = "../../menus/index/index.html"})
-document.getElementById("osquit").addEventListener("click", () => {require("electron").ipcRenderer.sendSync("closed", "close")})
+document.getElementById("menuquit").addEventListener("click", () => {window.location.href = "/jsgame/web/index.html"})
+document.getElementById("osquit").addEventListener("click", () => {window.close()})
