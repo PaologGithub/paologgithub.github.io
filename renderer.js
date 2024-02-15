@@ -14,12 +14,12 @@ setTimeout(() => {
         document.body.appendChild(titlebarscript)
         document.body.appendChild(styleLink)
 
-        const btn = document.getElementById("jsgame-control_center")
+        /* const btn = document.getElementById("jsgame-control_center")
         btn.onclick = () => {window.location.href = "https://paologgithub.github.io/jsgame/JSGameControlCenter/index.html"}
-        btn.hidden = false;
+        btn.hidden = false; */
     } catch (e) {
         console.info("Aren't in JSGame: " + e)
-        const btn = document.getElementById("jsgame-control_center")
-        btn.hidden = true;
+        /* const btn = document.getElementById("jsgame-control_center")
+        btn.hidden = true; */
     }
 }, 100)

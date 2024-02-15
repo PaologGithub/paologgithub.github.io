@@ -26,7 +26,7 @@
 		"needToCreateLinkWindows": true,
 		"needToCreateLinkLinux": true,
 		"needToCreateLinkMac": true,
-        "outputLinkWindows": "%AppData%/Microsoft/Windows/Start Menu/Programs",
+        "outputLinkWindows": "%AppData%\\Microsoft\\Windows\\Start Menu\\Programs",
         "outputLinkLinux": "~/.local/share/applications",
         "outputLinkMac": "",
         "windowModeWindows": "normal",
@@ -48,6 +48,8 @@
 		"postInstallScriptLocationLinux": "",
 		"postInstallScriptWindows": "jsgame.exe --setup",
 		"postInstallScriptLinux": "jsgame --setup",
-		"postInstallScriptMac": ""
+		"postInstallScriptMac": "",
+		"thumbail":"https://github.com/PaologGithub/JSGameGithubReleases/releases/latest/download/JSGame2.png",
+		"isHidden": false
     }
 }
