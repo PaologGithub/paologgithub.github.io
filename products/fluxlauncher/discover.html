@@ -9,6 +9,11 @@
     integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="/semantic/semantic.min.js"></script>
     <link rel="stylesheet" href="/semantic/semantic.css">
+    <script>
+        $(document).ready(function(){
+            $('.ui.dropdown').dropdown();
+        });
+    </script>
 </head>
 <body>
     <div class="ui inverted menu">
@@ -53,9 +58,15 @@
         </div>
     </div>
     <div class="ui main text container">
-        <h1 class="ui header">Welcome to Paolog's website</h1>
-        <p>Here, you can download Paolog's product,</p>
-        <p>And watch whtat's coming (For the future)</p>
+        <div class="ui huge header">FluxLauncher</div>
+        <h2>You can watch here a new game launcher with these goals:</h2>
+        <ul class="ui huge list">
+            <li>Performance</li>
+            <li>Compatibility</li>
+            <li>Security</li>
+        </ul>
+        <h3>Here, you can have screenshots of FluxLauncher</h3>
+        <p>__SCREENSHOTS__</p>
     </div>
 </body>
 </html>

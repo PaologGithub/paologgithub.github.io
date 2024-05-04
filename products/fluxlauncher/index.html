@@ -8,7 +8,13 @@
     <script src="/semantic/jquery.js"
     integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="/semantic/semantic.min.js"></script>
+    <script src="downloader.js"></script>
     <link rel="stylesheet" href="/semantic/semantic.css">
+    <script>
+        $(document).ready(function(){
+            $('.ui.dropdown').dropdown();
+        });
+    </script>
 </head>
 <body>
     <div class="ui inverted menu">
@@ -53,9 +59,56 @@
         </div>
     </div>
     <div class="ui main text container">
-        <h1 class="ui header">Welcome to Paolog's website</h1>
-        <p>Here, you can download Paolog's product,</p>
-        <p>And watch whtat's coming (For the future)</p>
+        <div class="ui huge header">FluxLauncher</div>
+        <h2>You can watch here a new game launcher with these goals:</h2>
+        <ul class="ui huge list">
+            <li>Performance</li>
+            <li>Compatibility</li>
+            <li>Security</li>
+        </ul>
+        <p></p>
+        <div class="ui floating dropdown labeled top left pointing large primary icon button">
+            <i class="download icon"></i>
+            <span class="text">Download</span>
+            <div class="menu">
+                <div class="header">Download for</div>
+                <div class="item">
+                    <i class="dropdown icon"></i>
+                    Windows
+                    <div class="menu right">
+                        <div class="item" onclick="download('/robots.txt', 'Bip boup boup.txt')">Windows 7 or newer</div>
+                        <div class="ui disabled item">Windows Vista or older</div>
+                    </div>
+                </div>
+                <div class="item">
+                    <i class="dropdown icon"></i>
+                    Linux
+                    <div class="menu right">
+                        <div class="item">Linux (.zip)</div>
+                        <div class="ui disabled item">Linux (.tar.gz)</div>
+                    </div>
+                </div>
+                <div class="item">
+                    <i class="dropdown icon"></i>
+                    Android
+                    <div class="menu right">
+                        <div class="item">Android 7 or newer</div>
+                        <div class="ui disabled item">Android 6 or older</div>
+                    </div>
+                </div>
+                <div class="ui disabled item">
+                    <i class="dropdown icon"></i>
+                    macOS
+                </div>
+                <div class="ui disabled item">
+                    <i class="dropdown icon"></i>
+                    iOS
+                </div>
+            </div>
+        </div>
+        <button class="ui large button" onclick="window.location.href='/products/fluxlauncher/discover.html'">
+            Discover
+        </button>
     </div>
 </body>
 </html>
