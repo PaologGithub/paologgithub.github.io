@@ -1,45 +1,76 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" href="/logo.jpg" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>PaologGithub Website</title>
-		
-		<link rel="modulepreload" href="/_app/immutable/entry/start.C0DLKExc.js">
-		<link rel="modulepreload" href="/_app/immutable/chunks/entry.DEqYvQKo.js">
-		<link rel="modulepreload" href="/_app/immutable/chunks/scheduler.BvLojk_z.js">
-		<link rel="modulepreload" href="/_app/immutable/entry/app.BZcQE0A4.js">
-		<link rel="modulepreload" href="/_app/immutable/chunks/index.CV2v7xC1.js">
-	</head>
-	<body data-sveltekit-preload-data="hover">
-		<style>
-			/* Put the app at fullscreen */
-			div {
-				position: absolute;
-				top: 0%;
-				bottom: 0%;
-				left: 0%;
-				right: 0%;
-			}
-		</style>
-		<div style="display: contents">
-			<script>
-				{
-					__sveltekit_1b26htq = {
-						base: ""
-					};
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpg" href="/logo.jpg" />
+    <title>404 Not Found</title>
+    <style>
+        body {
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #121212; /* Dark background */
+            font-family: Consolas, "Courier New", monospace; /* BSOD style font */
+            color: #e0e0e0; /* Light text color */
+        }
 
-					const element = document.currentScript.parentElement;
+        .container {
+            text-align: center;
+            max-width: 80%;
+        }
 
-					Promise.all([
-						import("/_app/immutable/entry/start.C0DLKExc.js"),
-						import("/_app/immutable/entry/app.BZcQE0A4.js")
-					]).then(([kit, app]) => {
-						kit.start(app, element);
-					});
-				}
-			</script>
-		</div>
-	</body>
+        h1 {
+            font-size: 80px;
+            margin: 0;
+            color: #e0e0e0; /* Light text for header */
+        }
+
+        .error-message {
+            font-size: 24px;
+            line-height: 1.6;
+            margin-top: 20px;
+            color: #b0b0b0; /* Slightly lighter text for message */
+        }
+
+        .error-code {
+            margin-top: 30px;
+            font-size: 18px;
+            color: #a0a0a0; /* Slightly lighter text for error code */
+        }
+
+        .button {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 15px 30px;
+            background-color: #1e1e1e; /* Darker button color */
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            color: #e0e0e0;
+            text-decoration: none;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(255, 255, 255, 0.2); /* Subtle light shadow */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>:,(</h1>
+        <p class="error-message">
+            Your requested page couldn't be found.<br>
+            Something went wrong, and we couldn't display the page you were looking for.
+        </p>
+        <p class="error-code">Error Code: 404 - PAGE NOT FOUND</p>
+        <a href="/" class="button">Return to Homepage</a>
+    </div>
+</body>
 </html>
