@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+
+    <style>
+        body {
+            font-family: "Segoe UI",Roboto, Helvetica, Arial, sans-serif;
+
+            background: #3973aa;
+            color: #fefeff;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #page {
+            display: table;
+            height: 100%;
+            margin: 0 auto;
+            margin-top: -10px;
+            width: 70%;
+            font-size: 1.9vw;
+        }
+
+        #container {
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        a {
+            font-weight: normal;
+            padding: 0;
+            margin: 25px 0;
+            margin-top: 0;
+            font-weight: 300;
+        }
+
+        h1 {
+            font-size: 6.5em;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 1.5em;
+        }
+
+        h4 {
+            font-size: 1.4em;
+            line-height: 1.5em;
+        }
+
+        h5 {
+            line-height: 1.1em;
+            font-size: 1.3em;
+        }
+
+        #details {
+            display: flex;
+            flex-flow: row;
+            flex-wrap: nowrap;
+            padding-top: 10px;
+        }
+
+        #qr {
+            flex: 0 1 auto;
+        }
+
+        a {
+            color: white;
+        }
+        a:visited {
+            color: white;
+        }
+
+        #image img {
+            width: 9.8em;
+            height: 9.8em;
+        }
+
+        #stopcode {
+            padding-left: 10px;
+            flex: 1 1 auto;
+        }
+
+        @media (min-width: 840px) {
+            #page {
+                font-size: 140%;
+                width: 800px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="page">
+        <div id="container">
+          <h1>:,(</h1>
+          <h2>NewSpartan couldn't get to the specified URL: <br><code id="URLText">NEWSPARTAN_URL</code></h2>
+          <h2>
+            Error data:
+            <br>
+            <code style="font-size: 0.75em; background-color: gray;">Error name:</code> <code style="font-size: 0.75em" id="ERRCodeText">NEWSPARTAN_ERRCODE</code>
+            <br>
+            <code style="font-size: 0.75em; background-color: gray;">Error message:</code> <code style="font-size: 0.75em" id="ERRMsgText">NEWSPARTAN_ERRMSG</code>
+          </h2>
+
+          <h4>For more information about this issue and possible fixes, visit
+          <br/><a href="https://github.com/PaologGithub/Project_NewSpartan/issues">NewSpartan Issues</a></h4>
+        </div>
+      </div>
+    
+    <script>
+        window.onload = () => {
+            const params = new URLSearchParams(window.location.search);
+            if (params.has("NEWSPARTAN_URL")) {
+                document.getElementById("URLText").textContent = params.get("NEWSPARTAN_URL");
+            }
+            if (params.has("NEWSPARTAN_ERRCODE")) {
+                document.getElementById("ERRCodeText").textContent = params.get("NEWSPARTAN_ERRCODE");
+            }
+            if (params.has("NEWSPARTAN_ERRMSG")) {
+                document.getElementById("ERRMsgText").textContent = params.get("NEWSPARTAN_ERRMSG");
+            }
+        }
+
+    </script>
+</body>
+</html>
